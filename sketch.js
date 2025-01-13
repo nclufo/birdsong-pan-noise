@@ -13,6 +13,15 @@ function setup() {
 
 function draw() {
   background(255);
+  let t = frameCount * 0.002;
+  noStroke();
+  for (let i = 0; i < 500; i += 5) {
+    for (let j = 0; j < 500; j += 5) {
+      var n = noise(i * 0.005, j * 0.005 - t, t);
+      fill(n*230, n*240, n * 250);
+      rect(i, j, 5);
+    }
+  }
   
   let noiseLevel = 500;
   let noiseScale = 0.005;
