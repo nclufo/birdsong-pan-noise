@@ -18,29 +18,26 @@ function draw() {
   for (let i = 0; i < 500; i += 5) {
     for (let j = 0; j < 500; j += 5) {
       var n = noise(i * 0.005, j * 0.005 - t, t);
-      fill(n*230, n*240, n * 250);
+      fill(n*230, n*240, n * 250, 80);
       rect(i, j, 5);
     }
   }
-  
   let noiseLevel = 500;
   let noiseScale = 0.005;
-
+  
   let nt = noiseScale * frameCount;
-
+  
   let x = noiseLevel * noise(nt);
   let y = noiseLevel * noise(nt + 10000);
-
-  fill(255);
+  
+  fill(0);
   strokeWeight(15);
-  point(x, y);
+  rect(x, y, 10, 10);
   
   panning = map(x, 0, 500, -1, 1);
   birdsong.pan(panning);
-
-
   
-  vol = map(y, 0, 500, 1, 0);
+  vol = map(y, 0, 500, 1, 0.2);
   birdsong.setVolume(vol);
   console.log(panning, vol);
 }
@@ -51,4 +48,5 @@ function mousePressed() {
  } else {
    birdsong.pause();
 }
+
 }
