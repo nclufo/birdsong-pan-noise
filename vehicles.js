@@ -3,7 +3,7 @@ class Vehicle {
     constructor(x, y) {
       this.position = createVector(x, y);
       this.r = 6;
-      this.maxspeed = 3; // Maximum speed
+      this.maxspeed = 7; // Maximum speed
       this.maxforce = 0.2; // Maximum steering force
       this.acceleration = createVector(0, 0);
       this.velocity = createVector(0, 0);
@@ -12,7 +12,7 @@ class Vehicle {
     applyBehaviors(vehicles) {
       let separateForce = this.separate(vehicles);
      // let seekForce = this.seek(createVector(mouseX, mouseY));
-      let seekForce = this.seek(createVector(x, y));
+      let seekForce = this.seek(createVector(potX, potY));
   
       separateForce.mult(1.5);
       seekForce.mult(0.5);
@@ -82,7 +82,7 @@ class Vehicle {
     }
   
     show() {
-      fill(250);
+      fill(20);
       noStroke();
       push();
       translate(this.position.x, this.position.y);

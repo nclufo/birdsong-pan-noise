@@ -1,7 +1,6 @@
 let port;
 let connectAr;
-let valX = 0;
-let valY = 0;
+let val;
 let data =[];
 let potX;
 let potY;
@@ -17,58 +16,70 @@ function preload(){
 }
 
 function setup() {
-  cnv = createCanvas(500, 500);
+  cnv = createCanvas(windowWidth, windowHeight);
   cnv.mousePressed();
 
-  for (let i = 0; i < 50; i++) {
+  port = createSerial();
+  connectAr = createButton('Connect to Arduino');
+  connectAr.position(20, 20);
+  connectAr.mousePressed(connectArClick);
+
+  for (let i = 0; i < 200; i++) {
     vehicles.push(new Vehicle(random(width), random(height)));
   }
 
-  // port = createSerial();
-  // connectAr = createButton('Connect to Arduino');
-  // connectAr.mousePressed(connectArClick);
+
 }
 
 function draw() {
   background(255);
-      let t = frameCount * 0.002;
-  noStroke();
-  for (let i = 0; i < 500; i += 5) {
-    for (let j = 0; j < 500; j += 5) {
-      var n = noise(i * 0.005, j * 0.005 - t, t);
-      fill(n*230, n*240, n * 250, 90);
-      rect(i, j, 5);
-    }
-  }
-//   let val = port.readUntil("\n"); //read each line
-//   data = int(split(val," "));
-// if (data.length > 0) {
-// console.log("All: "+data);
+  // let t = frameCount * 0.002;
+  // noStroke();
+  // for (let i = 0; i < windowWidth; i += 10) {
+  //   for (let j = 0; j < windowHeight; j += 10) {
+  //     var n = noise(i * 0.005, j * 0.005 - t, t);
+  //     fill(n*230, n*240, n * 250, 90);
+  //     rect(i, j, 10);
+  //   }
+  // }
+  val = port.readUntil("\n"); //read each line
+ 
+  if(val != NaN){
+
+  data = split(val,",");
+  console.log("data: " + data);
+  console.log("X: "+ data[0]);
+console.log("Y: "+data[1]);
+potX = data[0];
+potY = data[1];
+}
+//   if (data.length > 0) {
+
 // console.log("X: "+ data[0]);
 // console.log("Y: "+data[1]);
 // potX = data[0];
 // potY = data[1];
 //   }
 
-  let noiseLevel = 500;
+  // let noiseLevel = 500;
   let noiseScale = 0.005;
 
   let nt = noiseScale * frameCount;
 
-   x = noiseLevel * noise(nt);
-   y = noiseLevel * noise(nt + 10000);
+   x = windowWidth * noise(nt);
+   y = windowHeight * noise(nt + 10000);
   
-  fill(15);
+  fill(250);
   noStroke();
   circle(x, y, 10);
   
-  panning = map(x, 0, 500, -1, 1);
+  panning = map(x, 0, windowWidth, -1, 1);
   birdsong.pan(panning);
 
   
-  vol = map(y, 0, 500, 1, 0.2);
+  vol = map(y, 0, windowHeight, 1, 0.2);
   birdsong.setVolume(vol);
-  console.log(panning, vol);
+  // console.log(panning, vol);
   
   
     for (let v of vehicles) {
@@ -87,10 +98,10 @@ function mousePressed() {
 }
 }
 
-// function connectArClick() {
-//   if (!port.opened()) {
-//     port.open('Arduino', 9600);
-//   } else {
-//     port.close();
-//   }
-// }
+function connectArClick() {
+  if (!port.opened()) {
+    port.open('Arduino', 9600);
+  } else {
+    port.close();
+  }
+}
