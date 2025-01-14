@@ -87,7 +87,7 @@ potY = data[1];
     for (let v of vehicles) {
     v.applyBehaviors(vehicles);
     v.update();
-    v.borders();
+    v.edges();
     v.show();
   }
 }

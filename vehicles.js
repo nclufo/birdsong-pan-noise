@@ -91,11 +91,25 @@ class Vehicle {
     }
   
     // Wraparound
-    borders() {
-      if (this.position.x < -this.r) this.position.x = width + this.r;
-      if (this.position.y < -this.r) this.position.y = height + this.r;
-      if (this.position.x > width + this.r) this.position.x = -this.r;
-      if (this.position.y > height + this.r) this.position.y = -this.r;
+    // borders() {
+    //   if (this.position.x < -this.r) this.position.x = width + this.r;
+    //   if (this.position.y < -this.r) this.position.y = height + this.r;
+    //   if (this.position.x > width + this.r) this.position.x = -this.r;
+    //   if (this.position.y > height + this.r) this.position.y = -this.r;
+    // }
+
+    //// bounce off edges??
+    edges() {
+        if (this.position.x > width) {
+            this.velocity.x = -this.velocity.x;
+        } else if (this.position.x < 0) {
+            this.velocity.x = -this.velocity.x;
+        }
+        if (this.position.y > height) {
+            this.velocity.y = -this.velocity.y;
+        } else if (this.position.y < 0) {
+            this.velocity.y = -this.velocity.y;
+        }
     }
   }
   
