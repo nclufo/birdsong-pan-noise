@@ -1,3 +1,8 @@
+// let port;
+// let connectAr;
+// let valX = 0;
+// let valY = 0;
+
 let birdsong;
 let panning;
 let vol;
@@ -5,7 +10,7 @@ let cnv;
 let vehicles = [] ;
 
 function preload(){
-  birdsong = loadSound('sound/birdsong.mp3');
+  birdsong = loadSound('sound/birdsong2.mp3');
 }
 
 function setup() {
@@ -15,6 +20,10 @@ function setup() {
     for (let i = 0; i < 50; i++) {
     vehicles.push(new Vehicle(random(width), random(height)));
   }
+
+  // port = createSerial();
+  // connectAr = createButton('Connect to Arduino');
+  // connectAr.mousePressed(connectArClick);
 }
 
 function draw() {
@@ -45,7 +54,7 @@ function draw() {
   birdsong.pan(panning);
 
   
-  vol = map(y, 0, 500, 1, 0);
+  vol = map(y, 0, 500, 1, 0.2);
   birdsong.setVolume(vol);
   console.log(panning, vol);
   
@@ -65,3 +74,11 @@ function mousePressed() {
    birdsong.pause();
 }
 }
+
+// function connectArClick() {
+//   if (!port.opened()) {
+//     port.open('Arduino', 9600);
+//   } else {
+//     port.close();
+//   }
+// }
