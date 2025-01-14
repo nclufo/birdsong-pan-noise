@@ -1,14 +1,17 @@
-// let port;
-// let connectAr;
-// let valX = 0;
-// let valY = 0;
+let port;
+let connectAr;
+let valX = 0;
+let valY = 0;
+let data =[];
+let potX;
+let potY;
 
 let birdsong;
 let panning;
 let vol;
 let cnv;
 let vehicles = [] ;
-
+let x,y;
 function preload(){
   birdsong = loadSound('sound/birdsong2.mp3');
 }
@@ -16,8 +19,8 @@ function preload(){
 function setup() {
   cnv = createCanvas(500, 500);
   cnv.mousePressed();
-  
-    for (let i = 0; i < 50; i++) {
+
+  for (let i = 0; i < 50; i++) {
     vehicles.push(new Vehicle(random(width), random(height)));
   }
 
@@ -37,14 +40,23 @@ function draw() {
       rect(i, j, 5);
     }
   }
-  
+//   let val = port.readUntil("\n"); //read each line
+//   data = int(split(val," "));
+// if (data.length > 0) {
+// console.log("All: "+data);
+// console.log("X: "+ data[0]);
+// console.log("Y: "+data[1]);
+// potX = data[0];
+// potY = data[1];
+//   }
+
   let noiseLevel = 500;
   let noiseScale = 0.005;
 
   let nt = noiseScale * frameCount;
 
-  let x = noiseLevel * noise(nt);
-  let y = noiseLevel * noise(nt + 10000);
+   x = noiseLevel * noise(nt);
+   y = noiseLevel * noise(nt + 10000);
   
   fill(15);
   noStroke();

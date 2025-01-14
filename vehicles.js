@@ -11,7 +11,8 @@ class Vehicle {
   
     applyBehaviors(vehicles) {
       let separateForce = this.separate(vehicles);
-      let seekForce = this.seek(createVector(mouseX, mouseY));
+     // let seekForce = this.seek(createVector(mouseX, mouseY));
+      let seekForce = this.seek(createVector(x, y));
   
       separateForce.mult(1.5);
       seekForce.mult(0.5);
