@@ -24,7 +24,7 @@ function setup() {
   connectAr.position(20, 20);
   connectAr.mousePressed(connectArClick);
 
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 100; i++) {
     vehicles.push(new Vehicle(random(width), random(height)));
   }
 
@@ -33,15 +33,15 @@ function setup() {
 
 function draw() {
   background(255);
-  // let t = frameCount * 0.002;
-  // noStroke();
-  // for (let i = 0; i < windowWidth; i += 10) {
-  //   for (let j = 0; j < windowHeight; j += 10) {
-  //     var n = noise(i * 0.005, j * 0.005 - t, t);
-  //     fill(n*230, n*240, n * 250, 90);
-  //     rect(i, j, 10);
-  //   }
-  // }
+  let t = frameCount * 0.002;
+  noStroke();
+  for (let i = 0; i < windowWidth; i += 10) {
+    for (let j = 0; j < windowHeight; j += 10) {
+      var n = noise(i * 0.005, j * 0.005 - t, t);
+      fill(n*230, n*240, n * 250, 90);
+      rect(i, j, 10);
+    }
+  }
   val = port.readUntil("\n"); //read each line
  
   if(val != NaN){
@@ -51,7 +51,9 @@ function draw() {
   console.log("X: "+ data[0]);
 console.log("Y: "+data[1]);
 potX = data[0];
+// potX = map(data[0], 0, 521, 0, windowWidth);
 potY = data[1];
+// potY = map(data[1], 0, 521, 0, windowHeight);
 }
 //   if (data.length > 0) {
 

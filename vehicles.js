@@ -3,8 +3,8 @@ class Vehicle {
     constructor(x, y) {
       this.position = createVector(x, y);
       this.r = 6;
-      this.maxspeed = 7; // Maximum speed
-      this.maxforce = 0.2; // Maximum steering force
+      this.maxspeed = 3; // Maximum speed
+      this.maxforce = 0.1; // Maximum steering force
       this.acceleration = createVector(0, 0);
       this.velocity = createVector(0, 0);
     }
