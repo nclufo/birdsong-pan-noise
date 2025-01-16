@@ -70,7 +70,7 @@ function draw() {
 //   }
 
 // //draw noisePoint
-  // let noiseLevel = 500;
+  // let noiseLevel = 500; //aka canvas size
   let noiseScale = 0.005;
   let nt = noiseScale * frameCount;
    x = windowWidth * noise(nt);
