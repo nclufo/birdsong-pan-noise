@@ -4,6 +4,8 @@ let val;
 let data =[];
 let potX;
 let potY;
+let mapPotX;
+let mapPotY;
 
 let birdsong;
 let panning;
@@ -24,7 +26,7 @@ function setup() {
   connectAr.position(20, 20);
   connectAr.mousePressed(connectArClick);
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 300; i++) {
     vehicles.push(new Vehicle(random(width), random(height)));
   }
 
@@ -65,21 +67,29 @@ potY = data[1];
 
   // let noiseLevel = 500;
   let noiseScale = 0.005;
-
   let nt = noiseScale * frameCount;
-
    x = windowWidth * noise(nt);
    y = windowHeight * noise(nt + 10000);
   
-  fill(250);
+  fill(250, 99);
   noStroke();
   circle(x, y, 10);
+
+  //potentiaometer seek point
+  // mapPotX = map(potX, 0, 1023, 0, windowWidth);
+  // mapPotY = map(potY, 0, 1023, 0, windowHeight);
+  fill(150, 200);
+  stroke(39, 39, 196);
+  // circle(mapPotX, mapPotY, 10);
+  circle(potX, potY, 10);
   
   panning = map(x, 0, windowWidth, -1, 1);
+  // panning = map(potX, 0, windowWidth, -1, 1);
   birdsong.pan(panning);
 
   
   vol = map(y, 0, windowHeight, 1, 0.2);
+  // vol = map(potY, 0, windowHeight, 1, 0.5);
   birdsong.setVolume(vol);
   // console.log(panning, vol);
   
@@ -103,6 +113,7 @@ function mousePressed() {
 function connectArClick() {
   if (!port.opened()) {
     port.open('Arduino', 9600);
+
   } else {
     port.close();
   }
