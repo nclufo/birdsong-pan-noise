@@ -80,12 +80,12 @@ function draw() {
   circle(x, y, 10);
 
   // //potentiaometer seek point
-  // mapPotX = map(potX, 0, 1023, 0, windowWidth);
-  // mapPotY = map(potY, 0, 1023, 0, windowHeight);
+  mapPotX = map(potX, 0, 1023, 0, windowWidth);
+  mapPotY = map(potY, 0, 1023, 0, windowHeight);
   fill(150, 200);
   stroke(39, 39, 196);
-  // circle(mapPotX, mapPotY, 10);
-  circle(potX, potY, 10);
+  circle(mapPotX, mapPotY, 10);
+  // circle(potX, potY, 10);
   
 
   // //set pan based on noisePoint
