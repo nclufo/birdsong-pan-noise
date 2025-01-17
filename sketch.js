@@ -75,7 +75,7 @@ function draw() {
   let nt = noiseScale * frameCount;
    x = windowWidth * noise(nt);
    y = windowHeight * noise(nt + 10000);
-  fill(250, 99);
+  fill(250, 0);
   noStroke();
   circle(x, y, 10);
 
@@ -90,16 +90,19 @@ function draw() {
 
   // //set pan based on noisePoint
   // //can't get potentiometer to work right
-  panning = map(x, 0, windowWidth, -1, 1);
-  // panning = map(potX, 0, windowWidth, -1, 1);
-  birdsong.pan(panning);
+      panning = map(x, 0, windowWidth, -1, 1);
+      // panning = map(mapPotX, 0, windowWidth, -1, 1);
+      birdsong.pan(panning);
+      // birdsong.pan(mouseX, mouseY);
+      
 
   // //set volume based on noisePoint
   // //can't get potentiometer to work right
-  vol = map(y, 0, windowHeight, 1, 0.2);
-  // vol = map(potY, 0, windowHeight, 1, 0.5);
-  birdsong.setVolume(vol);
-  // console.log(panning, vol);
+     vol = map(y, 0, windowHeight, 1, 0.2);
+    //  vol = map(mapPotY, 0, windowHeight, 1, 0.5);
+     birdsong.setVolume(vol);
+     // console.log(panning, vol);
+
   
   // //draw vehicles (ref vehilce.js)
     for (let v of vehicles) {
