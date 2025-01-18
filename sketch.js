@@ -82,8 +82,8 @@ function draw() {
   // //potentiaometer seek point
   mapPotX = map(potX, 0, 1023, 0, windowWidth);
   mapPotY = map(potY, 0, 1023, 0, windowHeight);
-  fill(150, 200);
-  stroke(39, 39, 196);
+  fill(33, 72, 163, 200);
+  noStroke();
   circle(mapPotX, mapPotY, 10);
   // circle(potX, potY, 10);
   
