@@ -75,9 +75,9 @@ function draw() {
   let nt = noiseScale * frameCount;
    x = windowWidth * noise(nt);
    y = windowHeight * noise(nt + 10000);
-  fill(250, 0);
+  fill(33, 72, 163, 200);
   noStroke();
-  circle(x, y, 10);
+  // circle(x, y, 10);
 
   // //potentiaometer seek point
   mapPotX = map(potX, 0, 1023, 0, windowWidth);
